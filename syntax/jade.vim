@@ -22,7 +22,7 @@ syn match   jadeBegin "^\s*\%([<>]\|&[^=~ ]\)\@!" nextgroup=jadeTag,jadeClassCha
 syn match   jadeTag "\w\+\%(:\w\+\)\=" contained contains=htmlTagName,htmlSpecialTagName nextgroup=@jadeComponent
 syn cluster jadeComponent contains=jadeAttributes,jadeIdChar,jadeClassChar,jadePlainChar
 syn match   jadeComment ' *\/\/.*$'
-syn region  jadeAttributes matchgroup=jadeAttributesDelimiter start="(" skip=+\%(\\\\\)*\\'+ end=")$" contained contains=htmlArg,jadeAttributeString,htmlEvent,htmlCssDefinition nextgroup=@jadeComponent
+syn region  jadeAttributes matchgroup=jadeAttributesDelimiter start="(" skip=+\%(\\\\\)*\\'+ end=")" contained contains=htmlArg,jadeAttributeString,htmlEvent,htmlCssDefinition nextgroup=@jadeComponent
 syn match   jadeClassChar "\." contained nextgroup=jadeClass
 syn match   jadeIdChar "#{\@!" contained nextgroup=jadeId
 syn match   jadeClass "\%(\w\|-\)\+" contained nextgroup=@jadeComponent
