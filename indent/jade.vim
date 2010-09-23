@@ -2,7 +2,7 @@
 " Language: Jade
 " Maintainer: Joshua Borton
 " Credits: Tim Pope (vim-jade)
-" Last Change: 2010 Aug 06
+" Last Change: 2010 Sep 22
 
 if exists("b:did_indent")
   finish
@@ -27,32 +27,8 @@ if !exists('g:jade_self_closing_tags')
   let g:jade_self_closing_tags = 'meta|link|img|hr|br'
 endif
 
-if maparg("<Plug>FilterBlock") == ""
-  inoremap <silent> <SID>FilterBlock <C-R>=<SID>fblock()<CR>
-  imap <script> <Plug>FilterBlock <SID>FilterBlock
-endif
-
-if maparg('<CR>', 'i') =~# '<C-R>=.*fblock()<CR>\\\\|<\\\\%(Plug\\\\|SID\\\\)>FilterBlock'
-" already mapped
-elseif maparg('<CR>','i') =~ '<CR>'
-    exe "imap <script> <CR>      ".maparg('<CR>','i')."<SID>FilterBlock"
-else
-  imap <CR> <CR><Plug>FilterBlock
-endif
-
 setlocal formatoptions+=r
 setlocal comments+=n:\|
-
-function! s:fblock()
-  let lnum = line('.') - 1
-  let line = getline(lnum)
-  let group = synIDattr(synID(lnum,1,1),'name')
-  if group == 'jadeFilter'
-    return "\|"
-  else
-    return ""
-  endif
-endfunction
 
 function! GetJadeIndent()
   let lnum = prevnonblank(v:lnum-1)
