@@ -17,11 +17,12 @@ unlet! b:current_syntax
 
 syn case match
 
-syn cluster jadeTop contains=jadeBegin,jadeComment
+syn cluster jadeTop contains=jadeBegin,jadeComment,jadeHtmlComment
 syn match   jadeBegin "^\s*\%([<>]\|&[^=~ ]\)\@!" nextgroup=jadeTag,jadeClassChar,jadeIdChar,jadePlainChar
 syn match   jadeTag "\w\+\%(:\w\+\)\=" contained contains=htmlTagName,htmlSpecialTagName nextgroup=@jadeComponent
 syn cluster jadeComponent contains=jadeAttributes,jadeIdChar,jadeClassChar,jadePlainChar
 syn match   jadeComment ' *\/\/.*$'
+syn region  jadeHtmlComment start="^\z(\s*\)/"  end="^\%(\z1 \| *$\)\@!"
 syn region  jadeAttributes matchgroup=jadeAttributesDelimiter start="(" skip=+\%(\\\\\)*\\'+ end=")" contained contains=htmlArg,jadeAttributeString,htmlEvent,htmlCssDefinition nextgroup=@jadeComponent
 syn match   jadeClassChar "\." contained nextgroup=jadeClass
 syn match   jadeIdChar "#{\@!" contained nextgroup=jadeId
@@ -57,6 +58,7 @@ hi def link jadeInterpolationDelimiter Delimiter
 hi def link jadeFilter                 PreProc
 hi def link jadeDocType                PreProc
 hi def link jadeComment                Comment
+hi def link jadeHtmlComment            jadeComment
 
 let b:current_syntax = "jade"
 
