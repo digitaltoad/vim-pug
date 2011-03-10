@@ -17,10 +17,12 @@ unlet! b:current_syntax
 
 syn case match
 
+syn region jadeJavascript matchgroup=jadeJavascriptOutputChar start="[!&]\==\|\~" skip=",\s*$" end="$" contained contains=@htmlJavaScript keepend
+syn region jadeJavascript matchgroup=jadeJavascriptChar start="-" skip=",\s*$" end="$" contained contains=@htmlJavaScript keepend
 syn cluster jadeTop contains=jadeBegin,jadeComment,jadeHtmlComment
-syn match   jadeBegin "^\s*\%([<>]\|&[^=~ ]\)\@!" nextgroup=jadeTag,jadeClassChar,jadeIdChar,jadePlainChar
+syn match   jadeBegin "^\s*\%([<>]\|&[^=~ ]\)\@!" nextgroup=jadeTag,jadeClassChar,jadeIdChar,jadePlainChar,jadeJavascript
 syn match   jadeTag "\w\+\%(:\w\+\)\=" contained contains=htmlTagName,htmlSpecialTagName nextgroup=@jadeComponent
-syn cluster jadeComponent contains=jadeAttributes,jadeIdChar,jadeClassChar,jadePlainChar
+syn cluster jadeComponent contains=jadeAttributes,jadeIdChar,jadeClassChar,jadePlainChar,jadeJavascript
 syn match   jadeComment ' *\/\/.*$'
 syn region  jadeHtmlComment start="^\z(\s*\)/"  end="^\%(\z1 \| *$\)\@!"
 syn region  jadeAttributes matchgroup=jadeAttributesDelimiter start="(" skip=+\%(\\\\\)*\\'+ end=")" contained contains=htmlArg,jadeAttributeString,htmlEvent,htmlCssDefinition nextgroup=@jadeComponent
