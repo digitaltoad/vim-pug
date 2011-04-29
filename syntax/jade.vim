@@ -22,11 +22,12 @@ syn region jadeJavascript matchgroup=jadeJavascriptChar start="-" skip=",\s*$" e
 syn cluster jadeTop contains=jadeBegin,jadeComment,jadeHtmlComment
 syn match   jadeBegin "^\s*\%([<>]\|&[^=~ ]\)\@!" nextgroup=jadeTag,jadeClassChar,jadeIdChar,jadePlainChar,jadeJavascript
 syn match   jadeTag "\w\+\%(:\w\+\)\=" contained contains=htmlTagName,htmlSpecialTagName nextgroup=@jadeComponent
-syn cluster jadeComponent contains=jadeAttributes,jadeIdChar,jadeClassChar,jadePlainChar,jadeJavascript
+syn cluster jadeComponent contains=jadeAttributes,jadeIdChar,jadeBlockExpansionChar,jadeClassChar,jadePlainChar,jadeJavascript
 syn match   jadeComment ' *\/\/.*$'
 syn region  jadeHtmlComment start="^\z(\s*\)/"  end="^\%(\z1 \| *$\)\@!"
 syn region  jadeAttributes matchgroup=jadeAttributesDelimiter start="(" skip=+\%(\\\\\)*\\'+ end=")" contained contains=htmlArg,jadeAttributeString,htmlEvent,htmlCssDefinition nextgroup=@jadeComponent
 syn match   jadeClassChar "\." contained nextgroup=jadeClass
+syn match   jadeBlockExpansionChar ":\s" contained nextgroup=jadeTag
 syn match   jadeIdChar "#{\@!" contained nextgroup=jadeId
 syn match   jadeClass "\%(\w\|-\)\+" contained nextgroup=@jadeComponent
 syn match   jadeId "\%(\w\|-\)\+" contained nextgroup=@jadeComponent
@@ -54,6 +55,7 @@ hi def link jadeAttributeString        String
 hi def link jadeAttributesDelimiter    Identifier
 hi def link jadeIdChar                 Special
 hi def link jadeClassChar              Special
+hi def link jadeBlockExpansionChar     Special
 hi def link jadeId                     Identifier
 hi def link jadeClass                  Type
 hi def link jadeInterpolationDelimiter Delimiter
