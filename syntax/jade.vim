@@ -17,8 +17,8 @@ unlet! b:current_syntax
 
 syn case match
 
-syn region jadeJavascript matchgroup=jadeJavascriptOutputChar start="[!&]\==\|\~" skip=",\s*$" end="$" contained contains=@htmlJavaScript keepend
-syn region jadeJavascript matchgroup=jadeJavascriptChar start="-" skip=",\s*$" end="$" contained contains=@htmlJavaScript keepend
+syn region jadeJavascript matchgroup=jadeJavascriptOutputChar start="[!&]\==\|\~" skip=",\s*$" end="$" contained contains=@htmlJavascript keepend
+syn region jadeJavascript matchgroup=jadeJavascriptChar start="-" skip=",\s*$" end="$" contained contains=@htmlJavascript keepend
 syn cluster jadeTop contains=jadeBegin,jadeComment,jadeHtmlComment
 syn match   jadeBegin "^\s*\%([<>]\|&[^=~ ]\)\@!" nextgroup=jadeTag,jadeClassChar,jadeIdChar,jadePlainChar,jadeJavascript
 syn match   jadeTag "\w\+\%(:\w\+\)\=" contained contains=htmlTagName,htmlSpecialTagName nextgroup=@jadeComponent
@@ -38,7 +38,7 @@ syn region  jadeDocType start="^\s*!!!" end="$"
 syn keyword jadeHtmlArg contained href title
 
 syn match   jadePlainChar "\\" contained
-syn region  jadeInterpolation matchgroup=jadeInterpolationDelimiter start="#{" end="}" contains=@htmlJavaScript
+syn region  jadeInterpolation matchgroup=jadeInterpolationDelimiter start="#{" end="}" contains=@htmlJavascript
 syn match   jadeInterpolationEscape "\\\@<!\%(\\\\\)*\\\%(\\\ze#{\|#\ze{\)"
 
 syn region  jadeAttributeString start=+\%(=\s*\)\@<='+ skip=+\%(\\\\\)*\\'+ end=+'+ contains=jadeInterpolation
@@ -46,7 +46,7 @@ syn region  jadeAttributeString start=+\%(:\s*\)\@<='+ skip=+\%(\\\\\)*\\'+ end=
 syn region  jadeAttributeString start=+\%(=\s*\)\@<="+ skip=+\%(\\\\\)*\\'+ end=+"+ contains=jadeInterpolation
 syn region  jadeAttributeString start=+\%(:\s*\)\@<="+ skip=+\%(\\\\\)*\\'+ end=+"+ contains=jadeInterpolation
 
-syn region  jadeJavascriptFilter matchgroup=jadeFilter start="^\z(\s*\):javascript\s*$" end="^\%(\z1 \| *$\)\@!" contains=@htmlJavaScript
+syn region  jadeJavascriptFilter matchgroup=jadeFilter start="^\z(\s*\):javascript\s*$" end="^\%(\z1 \| *$\)\@!" contains=@htmlJavascript
 syn region  jadeMarkdownFilter matchgroup=jadeFilter start="^\z(\s*\):markdown\s*$" end="^\%(\z1 \| *$\)\@!"
 
 syn region  jadeJavascriptBlock start="^\z(\s*\)script" nextgroup=@jadeComponent,jadeError end="^\%(\z1 \| *$\)\@!" contains=@jadeTop,@htmlJavascript keepend
