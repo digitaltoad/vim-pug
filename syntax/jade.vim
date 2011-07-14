@@ -13,6 +13,7 @@ if !exists("main_syntax")
 endif
 
 runtime! syntax/html.vim
+runtime! syntax/html/html5.vim
 unlet! b:current_syntax
 
 syn case match
