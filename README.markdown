@@ -1,4 +1,4 @@
-# vim-jade ![project status](http://stillmaintained.com/digitaltoad/vim-jade.ong) #
+# vim-jade ![project status](http://stillmaintained.com/digitaltoad/vim-jade.png) #
 
 Vim syntax highlighting for Jade templates.
 
