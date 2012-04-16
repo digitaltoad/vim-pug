@@ -51,8 +51,8 @@ function! GetJadeIndent()
   if line =~ '^!!!'
     return indent
   elseif line =~ '^/\%(\[[^]]*\]\)\=$'
-    return increase
-  elseif group == 'jadeFilter'
+    return increse
+  elseif line =~ '^\%(if\|else\|unless\|for\|each\|block\|mixin\|append\)'
     return increase
   elseif line =~ '^'.s:tag.'[&!]\=[=~-].*,\s*$'
     return increase
@@ -60,7 +60,7 @@ function! GetJadeIndent()
     return increase
   elseif line =~? '^\v%('.g:jade_self_closing_tags.')>'
     return indent
-  elseif group =~? '\v^%(jadeTag|jadeAttributesDelimiter|jadeClass|jadeId|htmlTagName|htmlSpecialTagName)$'
+  elseif group =~? '\v^%(jadeTag|jadeAttributesDelimiter|jadeClass|jadeId|htmlTagName|htmlSpecialTagName|jadeFilter)$'
     return increase
   else
     return indent
