@@ -36,7 +36,7 @@ syn match   jadeBlockExpansionChar ":\s" contained nextgroup=jadeTag
 syn match   jadeIdChar "#{\@!" contained nextgroup=jadeId
 syn match   jadeClass "\%(\w\|-\)\+" contained nextgroup=@jadeComponent
 syn match   jadeId "\%(\w\|-\)\+" contained nextgroup=@jadeComponent
-syn region  jadeDocType start="^\s*!!!" end="$"
+syn region  jadeDocType start="^\s*\(!!!\|doctype\)" end="$"
 " Unless I'm mistaken, syntax/html.vim requires
 " that the = sign be present for these matches.
 " This adds the matches back for jade.
