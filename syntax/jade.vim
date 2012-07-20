@@ -14,6 +14,7 @@ endif
 
 runtime! syntax/html.vim
 runtime! syntax/html/html5.vim
+runtime! syntax/javascript.vim
 silent! syntax include @htmlCoffeescript syntax/coffee.vim
 unlet! b:current_syntax
 
