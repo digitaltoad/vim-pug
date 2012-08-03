@@ -46,7 +46,7 @@ syn match   jadePlainChar "\\" contained
 syn region  jadeInterpolation matchgroup=jadeInterpolationDelimiter start="#{" end="}" contains=@htmlJavascript
 syn match   jadeInterpolationEscape "\\\@<!\%(\\\\\)*\\\%(\\\ze#{\|#\ze{\)"
 
-syn region  jadeJavascriptFilter matchgroup=jadeFilter start="^\z(\s*\):javascript\s*$" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlJavascript
+syn region  jadeJavascriptFilter matchgroup=jadeFilter start="^\z(\s*\):\(java\)\=script\s*$" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlJavascript
 syn region  jadeCoffeescriptFilter matchgroup=jadeFilter start="^\z(\s*\):coffeescript\s*$" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlCoffeescript
 syn region  jadePlainFilter matchgroup=jadeFilter start="^\z(\s*\):\%(markdown\|sass\|less\|cdata\)\s*$" end="^\%(\z1\s\|\s*$\)\@!"
 
