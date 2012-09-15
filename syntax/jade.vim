@@ -16,6 +16,10 @@ runtime! syntax/html.vim
 runtime! syntax/html/html5.vim
 silent! syntax include @htmlCoffeescript syntax/coffee.vim
 unlet! b:current_syntax
+silent! syntax include @htmlStylus syntax/stylus.vim
+unlet! b:current_syntax
+silent! syntax include @htmlMarkdown syntax/markdown.vim
+unlet! b:current_syntax
 
 syn case match
 
@@ -28,8 +32,8 @@ syn cluster jadeTop contains=jadeBegin,jadeComment,jadeHtmlComment,jadeJavascrip
 syn match   jadeBegin "^\s*\%([<>]\|&[^=~ ]\)\@!" nextgroup=jadeTag,jadeClassChar,jadeIdChar,jadePlainChar,jadeJavascript,jadeScriptConditional,jadeScriptStatement
 syn match   jadeTag "+\?\w\+\%(:\w\+\)\=" contained contains=htmlTagName,htmlSpecialTagName nextgroup=@jadeComponent
 syn cluster jadeComponent contains=jadeAttributes,jadeIdChar,jadeBlockExpansionChar,jadeClassChar,jadePlainChar,jadeJavascript
-syn match   jadeComment ' *\/\/.*$'
-syn region  jadeHtmlComment start="^\z(\s*\)/"  end="^\%(\z1 \| *$\)\@!"
+syn match   jadeComment '\s*\/\/.*$'
+syn region  jadeHtmlComment start="^\z(\s*\)/"  end="^\%(\z1\s\|\s*$\)\@!"
 syn region  jadeAttributes matchgroup=jadeAttributesDelimiter start="(" end=")" contained contains=@htmlJavascript,jadeHtmlArg,htmlArg,htmlEvent,htmlCssDefinition nextgroup=@jadeComponent
 syn match   jadeClassChar "\." contained nextgroup=jadeClass
 syn match   jadeBlockExpansionChar ":\s" contained nextgroup=jadeTag
@@ -48,12 +52,15 @@ syn match   jadeInterpolationEscape "\\\@<!\%(\\\\\)*\\\%(\\\ze#{\|#\ze{\)"
 
 syn region  jadeJavascriptFilter matchgroup=jadeFilter start="^\z(\s*\):javascript\s*$" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlJavascript
 syn region  jadeCoffeescriptFilter matchgroup=jadeFilter start="^\z(\s*\):coffeescript\s*$" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlCoffeescript
-syn region  jadePlainFilter matchgroup=jadeFilter start="^\z(\s*\):\%(markdown\|sass\|less\|cdata\)\s*$" end="^\%(\z1\s\|\s*$\)\@!"
+syn region  jadeMarkdownFilter matchgroup=jadeFilter start=/^\z(\s*\):markdown\s*$/ end=/^\%(\z1\s\|\s*$\)\@!/ contains=@htmlMarkdown
+syn region  jadeStylusFilter matchgroup=jadeFilter start="^\z(\s*\):stylus\s*$" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlStylus
+syn region  jadePlainFilter matchgroup=jadeFilter start="^\z(\s*\):\%(sass\|less\|cdata\)\s*$" end="^\%(\z1\s\|\s*$\)\@!"
 
 syn match  jadeScriptConditional "\<\%(if\|else\|unless\|while\|for\|until\)\>[?!]\@!"
 syn match  jadeScriptStatement "\<\%(each\|block\|append\|mixin\|extends\|include\)\>[?!]\@!"
 
-syn region  jadeJavascriptBlock start="^\z(\s*\)script" nextgroup=@jadeComponent,jadeError end="^\%(\z1\s\|\s*$\)\@!" contains=@jadeTop,@htmlJavascript keepend
+syn region  jadeJavascript start="^\z(\s*\)script\%(:\w\+\)\=" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlJavascript,jadeJavascriptTag keepend 
+syn region  jadeJavascriptTag contained start="^\z(\s*\)script\%(:\w\+\)\=" end="$" contains=jadeBegin,jadeTag
 syn region  jadeCssBlock        start="^\z(\s*\)style" nextgroup=@jadeComponent,jadeError  end="^\%(\z1\s\|\s*$\)\@!" contains=@jadeTop,@htmlCss keepend
 
 syn match  jadeError "\$" contained
