@@ -43,7 +43,7 @@ if exists("loaded_matchit")
   let b:match_words = s:match_words
 endif
 
-setlocal comments= commentstring=//\ %s
+setlocal comments=://-,:// commentstring=//\ %s
 
 let b:undo_ftplugin = "setl cms< com< "
       \ " | unlet! b:browsefilter b:match_words | " . s:undo_ftplugin
