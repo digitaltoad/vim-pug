@@ -24,7 +24,7 @@ let s:attributes = '\%((.\{-\})\)'
 let s:tag = '\([%.#][[:alnum:]_-]\+\|'.s:attributes.'\)*[<>]*'
 
 if !exists('g:jade_self_closing_tags')
-  let g:jade_self_closing_tags = 'meta|link|img|hr|br'
+  let g:jade_self_closing_tags = 'meta|link|img|hr|br|input'
 endif
 
 setlocal formatoptions+=r
