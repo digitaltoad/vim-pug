@@ -51,7 +51,7 @@ function! GetJadeIndent()
   if line =~ '^!!!'
     return indent
   elseif line =~ '^/\%(\[[^]]*\]\)\=$'
-    return increse
+    return increase
   elseif line =~ '^\%(if\|else\|unless\|for\|each\|block\|mixin\|append\)'
     return increase
   elseif line =~ '^'.s:tag.'[&!]\=[=~-].*,\s*$'
