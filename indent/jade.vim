@@ -52,7 +52,7 @@ function! GetJadeIndent()
     return indent
   elseif line =~ '^/\%(\[[^]]*\]\)\=$'
     return increase
-  elseif line =~ '^\%(if\|else\|unless\|for\|each\|block\|mixin\|append\)'
+  elseif line =~ '^\%(if\|else\|unless\|for\|each\|block\|mixin\|append\|case\|when\)'
     return increase
   elseif line =~ '^'.s:tag.'[&!]\=[=~-].*,\s*$'
     return increase

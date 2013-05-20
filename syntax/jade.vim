@@ -56,7 +56,7 @@ syn region  jadeMarkdownFilter matchgroup=jadeFilter start=/^\z(\s*\):markdown\s
 syn region  jadeStylusFilter matchgroup=jadeFilter start="^\z(\s*\):stylus\s*$" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlStylus
 syn region  jadePlainFilter matchgroup=jadeFilter start="^\z(\s*\):\%(sass\|less\|cdata\)\s*$" end="^\%(\z1\s\|\s*$\)\@!"
 
-syn match  jadeScriptConditional "\<\%(if\|else\|unless\|while\|for\|until\)\>[?!]\@!"
+syn match  jadeScriptConditional "\<\%(if\|else\|unless\|while\|for\|until\|case\|when\)\>[?!]\@!"
 syn match  jadeScriptStatement "\<\%(each\|block\|append\|mixin\|extends\|include\)\>[?!]\@!"
 
 syn region  jadeJavascript start="^\z(\s*\)script\%(:\w\+\)\=" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlJavascript,jadeJavascriptTag keepend 
