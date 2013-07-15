@@ -11,7 +11,7 @@ endif
 unlet! b:did_indent
 let b:did_indent = 1
 
-setlocal autoindent et
+setlocal autoindent
 setlocal indentexpr=GetJadeIndent()
 setlocal indentkeys=o,O,*<Return>,},],0),!^F
 
