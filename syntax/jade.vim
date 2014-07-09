@@ -50,7 +50,7 @@ syn match   jadeInterpolationEscape "\\\@<!\%(\\\\\)*\\\%(\\\ze#{\|#\ze{\)"
 syn match   jadeTagInlineText "\s.*$" contained contains=jadeInterpolation,jadeTextInlineJade
 syn region  jadePipedText matchgroup=jadePipeChar start="|" end="$" contained contains=jadeInterpolation,jadeTextInlineJade nextgroup=jadePipedText skipnl
 syn match   jadeTagBlockChar "\.$" contained nextgroup=jadeTagBlockText,jadeTagBlockEnd skipnl
-syn region  jadeTagBlockText start="\%(\s*\)\S" end="\ze\n\1" contained contains=jadeInterpolation,jadeTextInlineJade nextgroup=jadeTagBlockText,jadeTagBlockEnd skipnl
+syn region  jadeTagBlockText start="\%(\s*\)\S" end="\ze\n" contained contains=jadeInterpolation,jadeTextInlineJade nextgroup=jadeTagBlockText,jadeTagBlockEnd skipnl
 syn region  jadeTagBlockEnd start="\s*\S" end="$" contained contains=jadeInterpolation,jadeTextInlineJade nextgroup=jadeBegin skipnl
 syn region  jadeTextInlineJade matchgroup=jadeInlineDelimiter start="#\[" end="]" contained contains=jadeTag keepend
 
