@@ -32,6 +32,7 @@ syn match   jadeTag "+\?\w\+\%(:\w\+\)\=" contained contains=htmlTagName,htmlSpe
 syn cluster jadeComponent contains=jadeAttributes,jadeIdChar,jadeBlockExpansionChar,jadeClassChar,jadePlainChar,jadeJavascript,jadeTagBlockChar,jadeTagInlineText
 syn match   jadeComment '\s*\/\/.*$'
 syn region  jadeHtmlComment start="^\z(\s*\)/"  end="^\%(\z1\s\|\s*$\)\@!"
+syn region  jadeHtmlConditionalComment start="<!--\%(.*\)>" end="<!\%(.*\)-->"
 syn region  jadeAttributes matchgroup=jadeAttributesDelimiter start="(" end=")" contained contains=@htmlJavascript,jadeHtmlArg,htmlArg,htmlEvent,htmlCssDefinition nextgroup=@jadeComponent
 syn match   jadeClassChar "\." contained nextgroup=jadeClass
 syn match   jadeBlockExpansionChar ":\s\+" contained nextgroup=jadeTag
@@ -91,6 +92,7 @@ hi def link jadeFilter                 PreProc
 hi def link jadeDocType                PreProc
 hi def link jadeComment                Comment
 hi def link jadeHtmlComment            jadeComment
+hi def link jadeHtmlConditionalComment jadeComment
 
 let b:current_syntax = "jade"
 
