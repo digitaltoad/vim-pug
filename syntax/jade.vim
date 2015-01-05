@@ -31,7 +31,7 @@ syn match   jadeBegin "^\s*\%([<>]\|&[^=~ ]\)\@!" nextgroup=jadeTag,jadeClassCha
 syn match   jadeTag "+\?\w\+\%(:\w\+\)\=" contained contains=htmlTagName,htmlSpecialTagName nextgroup=@jadeComponent
 syn cluster jadeComponent contains=jadeAttributes,jadeIdChar,jadeBlockExpansionChar,jadeClassChar,jadePlainChar,jadeJavascript,jadeTagBlockChar,jadeTagInlineText
 syn match   jadeComment '\s*\/\/.*$'
-syn region  jadeCommentBlock start="\s*\/\/.*$" end="^\%(\z1\s\|\s*$\)\@!" keepend 
+syn region  jadeCommentBlock start="\z(\s*\)\/\/.*$" end="^\%(\z1\s\|\s*$\)\@!" keepend 
 syn region  jadeHtmlConditionalComment start="<!--\%(.*\)>" end="<!\%(.*\)-->"
 syn region  jadeAttributes matchgroup=jadeAttributesDelimiter start="(" end=")" contained contains=@htmlJavascript,jadeHtmlArg,htmlArg,htmlEvent,htmlCssDefinition nextgroup=@jadeComponent
 syn match   jadeClassChar "\." contained nextgroup=jadeClass
