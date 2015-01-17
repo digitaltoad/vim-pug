@@ -46,7 +46,7 @@ syn region  jadeDocType start="^\s*\(!!!\|doctype\)" end="$"
 syn keyword jadeHtmlArg contained href title
 
 syn match   jadePlainChar "\\" contained
-syn region  jadeInterpolation matchgroup=jadeInterpolationDelimiter start="#{" end="}" contains=@htmlJavascript
+syn region  jadeInterpolation matchgroup=jadeInterpolationDelimiter start="[#!]{" end="}" contains=@htmlJavascript
 syn match   jadeInterpolationEscape "\\\@<!\%(\\\\\)*\\\%(\\\ze#{\|#\ze{\)"
 syn match   jadeTagInlineText "\s.*$" contained contains=jadeInterpolation,jadeTextInlineJade
 syn region  jadePipedText matchgroup=jadePipeChar start="|" end="$" contained contains=jadeInterpolation,jadeTextInlineJade nextgroup=jadePipedText skipnl
