@@ -31,7 +31,7 @@ syn match   jadeBegin "^\s*\%([<>]\|&[^=~ ]\)\@!" nextgroup=jadeTag,jadeClassCha
 syn match   jadeTag "+\?\w\+\%(:\w\+\)\=" contained contains=htmlTagName,htmlSpecialTagName nextgroup=@jadeComponent
 syn cluster jadeComponent contains=jadeAttributes,jadeIdChar,jadeBlockExpansionChar,jadeClassChar,jadePlainChar,jadeJavascript,jadeTagBlockChar,jadeTagInlineText
 syn match   jadeComment '\s*\/\/.*$'
-syn region  jadeCommentBlock start="\z(\s*\)\/\/.*$" end="^\%(\z1\s\|\s*$\)\@!" keepend 
+syn region  jadeCommentBlock start="\z(\s*\)\/\/.*$" end="^\%(\z1\s\|\s*$\)\@!" keepend
 syn region  jadeHtmlConditionalComment start="<!--\%(.*\)>" end="<!\%(.*\)-->"
 syn region  jadeAttributes matchgroup=jadeAttributesDelimiter start="(" end=")" contained contains=@htmlJavascript,jadeHtmlArg,htmlArg,htmlEvent,htmlCssDefinition nextgroup=@jadeComponent
 syn match   jadeClassChar "\." contained nextgroup=jadeClass
@@ -66,7 +66,7 @@ syn match  jadeScriptStatement "^\s*\<\%(each\|for\|block\|prepend\|append\|mixi
 syn region  jadeScriptLoopRegion start="^\s*\(for \)" end="$" contains=jadeScriptLoopKeywords
 syn keyword  jadeScriptLoopKeywords for in contained
 
-syn region  jadeJavascript start="^\z(\s*\)script\%(:\w\+\)\=" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlJavascript,jadeJavascriptTag keepend 
+syn region  jadeJavascript start="^\z(\s*\)script\%(:\w\+\)\=" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlJavascript,jadeJavascriptTag keepend
 syn region  jadeJavascriptTag contained start="^\z(\s*\)script\%(:\w\+\)\=" end="$" contains=jadeBegin,jadeTag
 syn region  jadeCssBlock        start="^\z(\s*\)style" nextgroup=@jadeComponent,jadeError  end="^\%(\z1\s\|\s*$\)\@!" contains=@jadeTop,@htmlCss keepend
 
@@ -77,7 +77,6 @@ hi def link jadeScriptConditional      PreProc
 hi def link jadeScriptLoopKeywords     PreProc
 hi def link jadeScriptStatement        PreProc
 hi def link jadeHtmlArg                htmlArg
-hi def link jadeAttributeString        String
 hi def link jadeAttributesDelimiter    Identifier
 hi def link jadeIdChar                 Special
 hi def link jadeClassChar              Special
