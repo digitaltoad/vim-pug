@@ -41,11 +41,9 @@ syn match   jadeIdChar "#[[{]\@!" contained nextgroup=jadeId
 syn match   jadeId "\%(\w\|-\)\+" contained nextgroup=@jadeComponent
 syn match   jadeClassChar "\." contained nextgroup=jadeClass
 syn match   jadeClass "\%(\w\|-\)\+" contained nextgroup=@jadeComponent
-syn region  jadeAttributes matchgroup=jadeAttributesDelimiter start="(" end=")" contained contains=@htmlJavascript,jadeHtmlArg,htmlArg,htmlEvent,htmlCssDefinition nextgroup=@jadeComponent
-" Unless I'm mistaken, syntax/html.vim requires
-" that the = sign be present for these matches.
-" This adds the matches back for jade.
-syn keyword jadeHtmlArg contained href title
+syn region  jadeAttributes matchgroup=jadeAttributesDelimiter start="(" end=")" contained contains=jadeAttribute,htmlCssDefinition nextgroup=@jadeComponent
+syn match   jadeAttribute "\%(\w\|-\)\+\%(:\%(\w\|-\)\+\)\?"  contained
+syn match   jadeAttribute "\%(\w\|-\)\+\%(:\%(\w\|-\)\+\)\?=" contained nextgroup=htmlString
 
 syn match   jadePlainChar "\\" contained
 syn match   jadeInterpolationEscape "\\\@<!\%(\\\\\)*\\\%(\\\ze#{\|#\ze{\)"
@@ -87,6 +85,7 @@ hi def link jadeHtmlArg                htmlArg
 hi def link jadeAttributesDelimiter    Identifier
 hi def link jadeIdChar                 Special
 hi def link jadeClassChar              Special
+hi def link jadeAttribute              Identifier
 hi def link jadeBlockExpansionChar     Special
 hi def link jadePipeChar               Special
 hi def link jadeTagBlockChar           Special
