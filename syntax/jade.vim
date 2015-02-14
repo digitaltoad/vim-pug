@@ -28,7 +28,7 @@ syn region  jadeJavascript matchgroup=jadeJavascriptOutputChar start="[!&]\==\|\
 syn region  jadeJavascript matchgroup=jadeJavascriptChar start="-" skip=",\s*$" end="$" contained contains=@htmlJavascript keepend
 syn cluster jadeTop contains=jadeBegin,jadeComment,jadeHtmlComment,jadeJavascript
 syn match   jadeBegin "^\s*\%([<>]\|&[^=~ ]\)\@!" nextgroup=jadeTag,jadeClassChar,jadeIdChar,jadePlainChar,jadeJavascript,jadeScriptConditional,jadeScriptStatement,jadePipedText
-syn match   jadeTag "+\?\w\+\%(:\w\+\)\=" contained contains=htmlTagName,htmlSpecialTagName nextgroup=@jadeComponent
+syn match   jadeTag "+\?\%(\w\|-\)\+\%(:\%(\w\|-\)\+\)\?" contained nextgroup=@jadeComponent
 syn cluster jadeComponent contains=jadeAttributes,jadeIdChar,jadeBlockExpansionChar,jadeClassChar,jadePlainChar,jadeJavascript,jadeTagBlockChar,jadeTagInlineText
 syn match   jadeComment '\s*\/\/.*$'
 syn region  jadeCommentBlock start="\z(\s*\)\/\/.*$" end="^\%(\z1\s\|\s*$\)\@!" keepend
@@ -83,6 +83,7 @@ hi def link jadeClassChar              Special
 hi def link jadeBlockExpansionChar     Special
 hi def link jadePipeChar               Special
 hi def link jadeTagBlockChar           Special
+hi def link jadeTag                    htmlTagName
 hi def link jadeId                     Identifier
 hi def link jadeClass                  Type
 hi def link jadeInterpolationDelimiter Delimiter
