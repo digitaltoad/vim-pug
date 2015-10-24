@@ -2,6 +2,8 @@
 
 Vim syntax highlighting for Jade templates.
 
+This plugin contributes to [vim-polyglot](https://github.com/sheerun/vim-polyglot) language pack.
+
 Installation
 ------------
 
