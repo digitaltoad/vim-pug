@@ -16,6 +16,8 @@ silent! syntax include @htmlCoffeescript syntax/coffee.vim
 unlet! b:current_syntax
 silent! syntax include @htmlStylus syntax/stylus.vim
 unlet! b:current_syntax
+silent! syntax include @htmlCss syntax/css.vim
+unlet! b:current_syntax
 silent! syntax include @htmlMarkdown syntax/markdown.vim
 unlet! b:current_syntax
 
