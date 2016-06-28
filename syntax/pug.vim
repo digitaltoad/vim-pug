@@ -18,6 +18,8 @@ silent! syntax include @htmlStylus syntax/stylus.vim
 unlet! b:current_syntax
 silent! syntax include @htmlCss syntax/css.vim
 unlet! b:current_syntax
+silent! syntax include @htmlHtml syntax/html.vim
+unlet! b:current_syntax
 silent! syntax include @htmlMarkdown syntax/markdown.vim
 unlet! b:current_syntax
 
@@ -30,7 +32,8 @@ syn region  pugJavascript matchgroup=pugJavascriptOutputChar start="[!&]\==\|\~"
 syn region  pugJavascript matchgroup=pugJavascriptChar start="-" skip=",\s*$" end="$" contained contains=@htmlJavascript keepend
 syn cluster pugTop contains=pugBegin,pugComment,pugHtmlComment,pugJavascript
 syn match   pugBegin "^\s*\%([<>]\|&[^=~ ]\)\@!" nextgroup=pugTag,pugClassChar,pugIdChar,pugPlainChar,pugJavascript,pugScriptConditional,pugScriptStatement,pugPipedText
-syn match   pugTag "+\?\w\+\%(:\w\+\)\=" contained contains=htmlTagName,htmlSpecialTagName nextgroup=@pugComponent
+syn match   pugTag "+\?\w\+\%(:\w\+\)\=" contained contains=htmlTagName,htmlSpecialTagName,pugMixinCall nextgroup=@pugComponent
+syn match   pugMixinCall "+\w\+" contained
 syn cluster pugComponent contains=pugAttributes,pugIdChar,pugBlockExpansionChar,pugClassChar,pugPlainChar,pugJavascript,pugTagBlockChar,pugTagInlineText
 syn match   pugComment '\(\s\+\|^\)\/\/.*$'
 syn region  pugCommentBlock start="\z(\s\+\|^\)\/\/.*$" end="^\%(\z1\s\|\s*$\)\@!" keepend 
@@ -93,6 +96,7 @@ hi def link pugInterpolationDelimiter Delimiter
 hi def link pugInlineDelimiter        Delimiter
 hi def link pugFilter                 PreProc
 hi def link pugDocType                PreProc
+hi def link pugMixinCall              Macro
 hi def link pugComment                Comment
 hi def link pugCommentBlock           Comment
 hi def link pugHtmlConditionalComment pugComment
