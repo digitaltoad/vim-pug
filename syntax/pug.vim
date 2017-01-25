@@ -37,7 +37,7 @@ syn match   pugComment '\(\s\+\|^\)\/\/.*$' contains=pugCommentTodo
 syn region  pugCommentBlock start="\z(\s\+\|^\)\/\/.*$" end="^\%(\z1\s\|\s*$\)\@!" contains=pugCommentTodo keepend
 syn region  pugHtmlConditionalComment start="<!--\%(.*\)>" end="<!\%(.*\)-->" contains=pugCommentTodo
 syn region  pugAttributes matchgroup=pugAttributesDelimiter start="(" end=")" contained contains=@htmlJavascript,pugHtmlArg,htmlArg,htmlEvent,htmlCssDefinition nextgroup=@pugComponent
-syn match   pugClassChar "\." contained nextgroup=pugClass
+syn match   pugClassChar "\." containedin=htmlTagName nextgroup=pugClass
 syn match   pugBlockExpansionChar ":\s\+" contained nextgroup=pugTag,pugClassChar,pugIdChar
 syn match   pugIdChar "#[[{]\@!" contained nextgroup=pugId
 syn match   pugClass "\%(\w\|-\)\+" contained nextgroup=@pugComponent
