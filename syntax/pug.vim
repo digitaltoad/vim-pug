@@ -75,6 +75,13 @@ syn region  pugCoffeescriptFilter matchgroup=pugFilter start="^\z(\s*\):coffee-\
 syn region  pugJavascriptTag contained start="^\z(\s*\)script\%(:\w\+\)\=" end="$" contains=pugBegin,pugTag
 syn region  pugCssBlock        start="^\z(\s*\)style" nextgroup=@pugComponent,pugError  end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlCss keepend
 
+" YAML frontmatter
+if get(g:, 'vim_markdown_frontmatter', 0)
+  syn include @yamlTop syntax/yaml.vim
+  syn region Comment matchgroup=mkdDelimiter start="\%^---$" end="^---$" contains=@yamlTop keepend
+  unlet! b:current_syntax
+endif
+
 syn match  pugError "\$" contained
 
 hi def link pugPlainChar              Special
