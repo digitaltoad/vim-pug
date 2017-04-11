@@ -4,6 +4,8 @@ Vim syntax highlighting for Pug (formerly Jade) templates.
 
 For best results consider using this with an (improved) HTML5 syntax plugin.
 
+This plugin contributes to [vim-polyglot](https://github.com/sheerun/vim-polyglot) language pack.
+
 Installation
 ------------
 
