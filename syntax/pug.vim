@@ -39,6 +39,7 @@ syn region  pugHtmlConditionalComment start="<!--\%(.*\)>" end="<!\%(.*\)-->" co
 syn region  pugAngular2 start="(" end=")" contains=htmlEvent
 syn region  pugJavascriptString start=+"+  skip=+\\\("\|$\)+  end=+"\|$+ contained
 syn region  pugJavascriptString start=+'+  skip=+\\\('\|$\)+  end=+'\|$+ contained
+syn region  pugJavascriptString start=+`+  skip=+\\\(`\|$\)+  end=+`\|$+ contained
 syn region  pugAttributes matchgroup=pugAttributesDelimiter start="(" end=")" contained contains=pugJavascriptString,pugHtmlArg,pugAngular2,htmlArg,htmlEvent,htmlCssDefinition nextgroup=@pugComponent
 syn match   pugClassChar "\." containedin=htmlTagName nextgroup=pugClass
 syn match   pugBlockExpansionChar ":\s\+" contained nextgroup=pugTag,pugClassChar,pugIdChar
