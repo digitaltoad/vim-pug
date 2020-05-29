@@ -40,7 +40,7 @@ syn region  pugHtmlConditionalComment start="<!--\%(.*\)>" end="<!\%(.*\)-->" co
 syn region  pugAngular2 start="(" end=")" contains=htmlEvent
 syn region  pugJavascriptString start=+"+  skip=+\\\("\|$\)+  end=+"\|$+ contained
 syn region  pugJavascriptString start=+'+  skip=+\\\('\|$\)+  end=+'\|$+ contained
-syn region  pugJavascriptString start=+`+  skip=+\\\(`\|$\)+  end=+`\|$+ contains=javascriptInterpolation contained
+syn region  pugJavascriptString start=+`+  skip=+\\\(`\|$\)+  end=+`+ contains=javascriptInterpolation,pugJavascriptMultilineStringIndent contained
 syn region  pugAttributes matchgroup=pugAttributesDelimiter start="(" end="\(.\zs)\)\|)" contained contains=pugJavascriptString,pugHtmlArg,pugAngular2,htmlArg,htmlEvent,htmlCssDefinition nextgroup=@pugComponent
 syn match   pugClassChar "\." containedin=htmlTagName nextgroup=pugClass
 syn match   pugBlockExpansionChar ":\s\+" contained nextgroup=pugTag,pugClassChar,pugIdChar
@@ -70,11 +70,12 @@ syn region  pugPlainFilter matchgroup=pugFilter start="^\z(\s*\):\%(sass\|less\|
 
 syn match  pugScriptConditional "^\s*\<\%(if\|else\|else if\|elif\|unless\|while\|until\|case\|when\|default\)\>[?!]\@!"
 syn match  pugScriptStatement "^\s*\<\%(each\|for\|block\|prepend\|append\|mixin\|extends\|include\)\>[?!]\@!"
-syn region  pugScriptLoopRegion start="^\s*\(for\|each\)" end="$" contains=pugScriptLoopKeywords
+syn region  pugScriptLoopRegion start="^\s*\<\(for\|each\)\>" end="$" contains=pugScriptLoopKeywords
 syn keyword  pugScriptLoopKeywords contained for each in
 
 syn region  pugJavascript start="^\z(\s*\)script\%(:\w\+\)\=" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlJavascript,pugJavascriptTag,pugCoffeescriptFilter keepend
 syn region javascriptInterpolation start=/${/ end=/}/ contained
+syn region pugJavascriptMultilineStringIndent start=/^/ end=/\ze\S/ contained
 
 syn region  pugCoffeescriptFilter matchgroup=pugFilter start="^\z(\s*\):coffee-\?script\s*$" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlCoffeescript contained
 syn region  pugJavascriptTag contained start="^\z(\s*\)script\%(:\w\+\)\=" end="$" contains=pugBegin,pugTag
@@ -106,6 +107,7 @@ hi def link pugCommentBlock           Comment
 hi def link pugHtmlConditionalComment pugComment
 hi def link pugJavascriptString       String
 hi def link javascriptInterpolation   Delimiter
+hi def link pugJavascriptMultilineStringIndent   Normal
 
 let b:current_syntax = "pug"
 
